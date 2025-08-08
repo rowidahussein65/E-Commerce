@@ -1,0 +1,12 @@
+<<<<<<< HEAD
+/* src/pages/Categories.css */
+.category-card {
+  border-radius: 12px;
+  transition: transform 0.3s;
+}
+.category-card:hover {
+  transform: scale(1.03);
+}
+=======
+.Categories {}
+>>>>>>> 246d364 (youssef)

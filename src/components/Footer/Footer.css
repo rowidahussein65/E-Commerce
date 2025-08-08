@@ -1,0 +1,85 @@
+.footer {
+  background-color: #f0f3f2;
+  color: #21313c;
+  padding: 40px 0;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #21313c;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 10px;
+}
+
+.footer-section a {
+  color: #21313c;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.footer-section a:hover {
+  color: hsl(136, 64%, 51%);
+}
+
+.footer-section a svg {
+  margin-right: 8px;
+  color: #21313c;
+}
+
+.payment-logos img {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.app-badges {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.app-badges img {
+  width: 120px;
+  height: auto;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  color: #21313c;
+}
+
+hr {
+  border-color: #a9b8c4;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
