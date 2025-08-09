@@ -1,3 +1,16 @@
 .test {
-    background-color: bisque;
+  background-color: bisque;
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animateslide {
+  animation: slide-left 10s linear infinite;
 }

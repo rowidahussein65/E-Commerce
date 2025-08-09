@@ -39,32 +39,62 @@ export function Products() {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(savedCart.map((item) => item.id));
     const savedWishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
-    setWishlistItems(savedWishlist);
+    setWishlistItems(savedWishlist.map((item) => item.id));
   }, []);
 
   function toggleCart(product) {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItem = cart.find((item) => item.id === product._id);
 
-    let newCart;
     if (!existingItem) {
-      newCart = [...cart, { id: product._id, quantity: 1 }];
+      const confirmAdd = window.confirm(
+        `Are you sure you want to add "${product.title}" to the cart?`
+      );
+      if (!confirmAdd) return;
+
+      const newCart = [...cart, { id: product._id, quantity: 1 }];
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      setCartItems(newCart.map((item) => item.id));
     } else {
-      newCart = cart.filter((item) => item.id !== product._id);
+      const confirmDelete = window.confirm(
+        `Are you sure you want to remove "${product.title}" from the cart?`
+      );
+      if (!confirmDelete) return;
+
+      const newCart = cart.filter((item) => item.id !== product._id);
+      localStorage.setItem("cart", JSON.stringify(newCart));
+      setCartItems(newCart.map((item) => item.id));
     }
-    localStorage.setItem("cart", JSON.stringify(newCart));
-    setCartItems(newCart.map((item) => item.id));
   }
 
-  function toggleWishlist(productId) {
-    let newWishlist;
-    if (wishlistItems.includes(productId)) {
-      newWishlist = wishlistItems.filter((id) => id !== productId);
+  function toggleWishlist(product) {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const exists = wishlist.find((item) => item.id === product._id);
+
+    if (!exists) {
+      const confirmAdd = window.confirm(
+        `Are you sure you want to add "${product.title}" to the wishlist?`
+      );
+      if (!confirmAdd) return;
+
+      wishlist.push({
+        id: product._id,
+        title: product.title,
+        image: product.imageCover,
+        price: product.price,
+      });
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      setWishlistItems(wishlist.map((item) => item.id));
     } else {
-      newWishlist = [...wishlistItems, productId];
+      const confirmDelete = window.confirm(
+        `Are you sure you want to remove "${product.title}" from the wishlist?`
+      );
+      if (!confirmDelete) return;
+
+      wishlist = wishlist.filter((item) => item.id !== product._id);
+      localStorage.setItem("wishlist", JSON.stringify(wishlist));
+      setWishlistItems(wishlist.map((item) => item.id));
     }
-    localStorage.setItem("wishlist", JSON.stringify(newWishlist));
-    setWishlistItems(newWishlist);
   }
 
   const filteredProducts = products.filter((product) =>
@@ -140,7 +170,7 @@ export function Products() {
                       className={
                         wishlistItems.includes(product._id) ? "in-wishlist" : ""
                       }
-                      onClick={() => toggleWishlist(product._id)}
+                      onClick={() => toggleWishlist(product)}
                     >
                       {wishlistItems.includes(product._id) ? (
                         <>

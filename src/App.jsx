@@ -18,6 +18,8 @@ import OrderDetails from "./components/Order/OrderDetails";
 import ViewProduct from "../src/components/ViewProduct/ViewProduct";
 import AuthContextProvider from "./Context/AuthContextProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import DetailsModal from "./components/Brands/DetailsModal/DetailsModal";
+// import ProductDetails from "./components/Home/ProductDetails/ProductDetails";
 
 // لو عندك الكمبوننت ده موجود فعلاً استورديه
 // import DetailsModal from "../src/components/DetailsModal/DetailsModal";
@@ -36,11 +38,10 @@ const router = createHashRouter([
         ),
       },
 
-      // لو الكمبوننت مش موجود، سيب السطر ده متشال
-      // { path: "modal", element: <DetailsModal /> },
-
       { path: "Order", element: <OrdersPage /> },
       { path: "order/:id", element: <OrderDetails /> },
+      { path: "modal", element: <DetailsModal /> },
+      // { path: "product/:id", element: <ProductDetails /> },
 
       {
         path: "products",
