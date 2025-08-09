@@ -114,6 +114,9 @@ export function Navbar() {
                   Categories
                 </Link>
               </li>
+              <li>
+                <Link to="/Order">Order</Link>
+              </li>
 
               {/* هنا بدل نص Cart حطيت أيقونة + badge */}
               <li className="relative">

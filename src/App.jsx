@@ -1,6 +1,7 @@
 import "./App.css";
 import { createHashRouter, RouterProvider } from "react-router-dom";
 
+// الصفحات والمكونات
 import Layout from "../src/components/Layout/Layout";
 import { Home } from "../src/components/Home/Home";
 import { Products } from "../src/components/Products/Products";
@@ -12,12 +13,14 @@ import SubCategories from "../src/components/SubCategories/SubCategories";
 import Login from "../src/components/Login/Login";
 import NotFound from "../src/components/NotFound/NotFound";
 import Register from "../src/components/Register/Register";
-
-// استورد الصفحة الجديدة ViewProduct
+import OrdersPage from "./components/Order/orderpage";
+import OrderDetails from "./components/Order/OrderDetails";
 import ViewProduct from "../src/components/ViewProduct/ViewProduct";
-
 import AuthContextProvider from "./Context/AuthContextProvider";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
+// لو عندك الكمبوننت ده موجود فعلاً استورديه
+// import DetailsModal from "../src/components/DetailsModal/DetailsModal";
 
 const router = createHashRouter([
   {
@@ -32,6 +35,13 @@ const router = createHashRouter([
           </ProtectedRoute>
         ),
       },
+
+      // لو الكمبوننت مش موجود، سيب السطر ده متشال
+      // { path: "modal", element: <DetailsModal /> },
+
+      { path: "Order", element: <OrdersPage /> },
+      { path: "order/:id", element: <OrderDetails /> },
+
       {
         path: "products",
         element: (
@@ -80,7 +90,6 @@ const router = createHashRouter([
           </ProtectedRoute>
         ),
       },
-      // هنا راوتر الصفحة الجديدة ViewProduct
       {
         path: "products/subcategory/:subcategoryId",
         element: (

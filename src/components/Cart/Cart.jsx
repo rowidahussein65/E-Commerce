@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Cart.module.css";
 
 export default function Cart() {
@@ -7,8 +8,8 @@ export default function Cart() {
   const [subtotal, setSubtotal] = useState(0);
   const [tax, setTax] = useState(0);
   const [total, setTotal] = useState(0);
+  const navigate = useNavigate();
 
-  // 🟡 Get full product list from API once
   useEffect(() => {
     async function fetchAllProducts() {
       try {
@@ -25,7 +26,6 @@ export default function Cart() {
     fetchAllProducts();
   }, []);
 
-  // 🟢 Once products + localStorage ready, build full cart
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -41,12 +41,11 @@ export default function Cart() {
           quantity: item.quantity,
         };
       })
-      .filter(Boolean); // remove nulls
+      .filter(Boolean);
 
     setCart(detailedCart);
   }, [allProducts]);
 
-  // 🧮 Calculate subtotal, tax, total
   useEffect(() => {
     const sub = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const taxAmount = sub * 0.1;
@@ -89,9 +88,24 @@ export default function Cart() {
   };
 
   const handleCheckout = () => {
+    const existingOrders = JSON.parse(localStorage.getItem("orders")) || [];
+    const newOrders = cart.map((item, i) => ({
+      id: `order-${Date.now()}-${i}`,
+      name: item.name,
+      image: item.image,
+      price: item.price,
+      quantity: item.quantity,
+      description: `Ordered ${item.quantity} item(s)`,
+      date: new Date().toLocaleDateString(),
+      status: "In Progress",
+    }));
+    const updatedOrders = [...existingOrders, ...newOrders];
+    localStorage.setItem("orders", JSON.stringify(updatedOrders));
+
     alert(`Thank you! Total: $${total.toFixed(2)}`);
     setCart([]);
     localStorage.removeItem("cart");
+    navigate("/Order");
   };
 
   return (

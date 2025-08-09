@@ -1,0 +1,118 @@
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.orders-page {
+  margin-top: 70px; 
+}
+
+.orders-page h1 {
+  font-size: 2rem; 
+  font-weight: bold; 
+  margin-bottom: 20px;
+    color: #2e7d32;
+
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters button {
+  margin: 0 8px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #eee;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.filters .active {
+  background: linear-gradient(to right, hsl(117, 81%, 74%), hsl(136, 64%, 51%));
+  color: white;
+}
+
+.orders-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.order-card {
+  width: 300px;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease-in-out;
+  background-color: white;
+}
+
+.order-card:hover {
+  transform: translateY(-5px);
+}
+
+.order-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.order-card h3 {
+    color: #2e7d32;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    font-size: 1.2rem;
+}
+
+.order-card p strong {
+  font-size: 16px;
+  color: #2e7d32;
+}
+
+.order-card p {
+  font-size: 14px;
+  color: #555;
+  margin: 5px 0;
+}
+
+
+.order-card .btn {
+  display: inline-block;
+  padding: 6px 12px;
+  background: linear-gradient(to right, hsl(117, 81%, 74%), hsl(136, 64%, 51%));
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.order-card .btn:hover {
+  background: linear-gradient(to right, hsl(192, 69%, 51%), hsl(136, 64%, 51%));
+  transform: scale(1.03);
+  color: #eeeeee;
+}
+
+.order-card.in-progress {
+  border-left: 8px solid orange;
+}
+
+.order-card.delivered {
+  border-left: 8px solid green;
+}
+
+.order-card.cancelled {
+  border-left: 8px solid red;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
